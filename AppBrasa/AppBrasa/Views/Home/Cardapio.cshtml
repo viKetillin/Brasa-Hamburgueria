@@ -1,0 +1,170 @@
+﻿@{
+    ViewData["Title"] = "Cardapio";
+    var franquia = ViewData["Franquia"] as Franquia;
+    var produto = ViewData["Produto"] as ProdutoFranquia;
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Cardápio - Brasa Hamburgueria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+    <link href="@Url.Content("~/css/global.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/cardapio.css")" rel="stylesheet" />
+</head>
+<body class="corFundo">
+    <header class="capaCardapio" style="background-image: url('@Url.Content("~/imagens/capaCardapio.jpg")">
+        <div class="dropdownsConfig">
+            <div class="dropdown">
+                <button class="botaoHorario" data-bs-toggle="dropdown"><i class="far fa-clock"></i><span id="statusHorario">Estamos abertos</span></button>
+                <ul class="dropdown-menu dropdownHorario" aria-labelledby="dropdownHorario">
+                    <li id="horario"></li>
+                </ul>
+            </div>
+
+            <div class="dropdown dropdownLinguagem">
+                <button class="botaoLinguagem" data-bs-toggle="dropdown" id="idiomaSelecionado">
+                    <img src="@Url.Content("~/imagens/brazil.png")" alt="Bandeira linguagem" />
+                </button>
+                <ul class="dropdown-menu menuLinguagem" aria-labelledby="dropdownLinguagem">
+                    <li id="idiomaDisponivel">
+                        <a onclick="navegarCardapioIngles()">
+                            <img src="@Url.Content("~/imagens/united-states.png")" alt="Bandeira linguagem" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <franquia>
+            <div id="logo">
+                <img src="@Url.Content(franquia.Logo)" />
+            </div>
+            <div class="endereco">
+                <i class="fas fa-map-marker-alt"></i><span>
+                    @franquia.Endereco <span>, </span> @franquia.Cidade
+                </span>
+            </div>
+        </franquia>
+    </header>
+    <section class="containerCardapio">
+        <div class="container-md">
+            <div class="input-group divPesquisaCategoria">
+                <div id="categorias">
+                    <div class="categoria tudo">
+                        <img src="@Url.Content("~/imagens/icon_cardapio.svg")" alt="Cardápio" />
+                    </div>
+                    <div class="categoria hambúrgueres">
+                        <img src="@Url.Content("~/imagens/icon_hamburger.svg")" alt="Hamburgueres" />
+                    </div>
+                    <div class="categoria adicionais">
+                        <img src="@Url.Content("~/imagens/icon_adicionais.svg")" alt="Adicionais" />
+                    </div>
+                    <div class="categoria bebidas">
+                        <img src="@Url.Content("~/imagens/icon_bebidas.svg")" alt="Bebidas" />
+                    </div>
+                    <div class="categoria porcoes">
+                        <img src="@Url.Content("~/imagens/icon_porcoes.svg")" alt="Entradas e Porções" />
+                    </div>
+                    <div class="categoria molhos">
+                        <img src="@Url.Content("~/imagens/icon_molhos.svg")" alt="Molhos" />
+                    </div>
+                    <div class="categoria sobremesas">
+                        <img src="@Url.Content("~/imagens/icon_sorvete.svg")" alt="Sobremesas" />
+                    </div>
+                </div>
+                <div class="inner-addon right-addon divPesquisa">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar" aria-describedby="btnPesquisa" id="inputPesquisa" />
+                </div>
+            </div>
+
+            <div id="cardProduto">
+                @foreach (var categoria in ViewBag.Categorias)
+                {
+                    @*@if (categoria.DescricaoCategoria != "Entradas e Porções")
+                        {
+                            @Html.Raw('<div id="@categoria.DescricaoCategoria" class="row">');
+                        }
+                        else
+                        {
+                            @Html.Raw('<div id="Porcoes" class="row">');
+                        }*@
+                    <span class="categoriaProduto">@categoria.DescricaoCategoria</span>
+
+                    @foreach (var produtos in ViewBag.ProdutoCardapio)
+                    {
+                        @if (produtos.Produto.Categoria.DescricaoCategoria == categoria.DescricaoCategoria)
+                        {
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="card cardCardapio">
+                                    <div class="imgLanche">
+                                        @if (produtos.Produto.ImagemProduto != null)
+                                        {
+                                            <img class="imagemCardapio" src="@produtos.Produto.ImagemProduto" />
+                                        }
+                                        else
+                                        {
+                                            <div style="margin: 1em;"></div>
+                                        }
+                                    </div>
+                                    <div class="infoLanche">
+                                        <span class="nomeLanche"> @produtos.Produto.NomeProduto </span>
+                                        @*@if (produtos.Produto.DescriptionProduct != null)
+                                            {
+                                                <span class="descricaoLanche"> @produtos.Produto.DescriptionProduct </span>
+                                            }
+                                            else if (produtos.Produto.DescricaoProduto != null)
+                                            {*@
+                                        <span class="descricaoLanche"> @produtos.Produto.DescricaoProduto </span>
+                                        @*}
+                                            else
+                                            {
+                                                <span style="display:block;"></span>
+                                            }*@
+                                        <span class="valorLanche">R$ @Convert.ToDouble(produtos.Valor).ToString("N2") </span>
+
+                                    </div>
+                                    <button class="botaoAdicionarCardapio" data-bs-toggle="modal" data-bs-target="#modalDetalheProduto" onclick="abrirModal(@produtos.Produto.Id)"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @*@Html.Raw('</div>');*@
+                }
+            </div>
+        </div>
+
+        <nav class="navbar fixed-bottom navbar-light bg-light">
+            <div class="container-fluid containerNavBar">
+                <div class="navbar-brand">
+                    <button class="btnTotalCarrinho"><i class="fas fa-shopping-cart"></i> Total <b> R$ <span id="totalCarrinho"> 00.00 </span></b></button>
+                    <div class="d-inline-block">
+                        <span class="spanInfoFinalizacaoPedido"> Para finalizar seu pedido clique aqui&nbsp;</span>
+                        <button class="btnFinalizarPedido" onclick="navegarPedido()"> Finalizar pedido </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="modal fade" id="modalDetalheProduto" tabindex="-1" aria-labelledby="modalDetalheProdutolLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div id="conteudoModal"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+           var franquia = @franquia.Id;
+    </script>
+
+    <script src="https://kit.fontawesome.com/61c3c13db3.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="@Url.Content("~/js/global.js")"></script>
+    <script src="@Url.Content("~/js/cardapio.js")"></script>
+</body>
+</html>

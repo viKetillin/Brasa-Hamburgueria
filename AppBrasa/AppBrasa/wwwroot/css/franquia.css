@@ -1,0 +1,76 @@
+﻿.tituloPagina {
+    text-transform: uppercase;
+    color: #4d4d4d;
+    border-bottom: 3px solid var(--corPrincipal);
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.navbar-brand img {
+    width: 8em;
+    margin-left: 2em;
+}
+
+.collapse.navbar-collapse {
+    justify-content: flex-end;
+    margin-right: 2em;
+}
+
+.corFundo {
+    background: #eee;
+}
+
+.containerFranquia {
+    background-color: #eee;
+}
+
+    .containerFranquia .cardsFranquias {
+        margin: 1em 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+        .containerFranquia .cardsFranquias .card {
+            text-align: center;
+            background: #ccc;
+            border-radius: 12px;
+            border-color: transparent;
+        }
+
+            .containerFranquia .cardsFranquias .card .footerCard {
+                border-radius: 0 0 12px 12px;
+            }
+
+            .containerFranquia .cardsFranquias .card img {
+                width: 12em;
+                display: block;
+                margin: 3em 3em 0em 3em;
+            }
+
+            .containerFranquia .cardsFranquias .card .footerCard {
+                background: var(--corPrincipal)
+            }
+
+                .containerFranquia .cardsFranquias .card .footerCard .enderecoFranquia, .containerFranquia .cardsFranquias .card .footerCard .contatoFranquia {
+                    display: block;
+                    color: #fff;
+                }
+
+            .containerFranquia .cardsFranquias .card .cidadeFranquia {
+                font-weight: bold;
+                margin: 1em;
+                margin-bottom: 2em;
+                font-size: 1.2em;
+            }
+
+            .containerFranquia .cardsFranquias .card .footerCard .enderecoFranquia {
+                font-size: 12px;
+                margin: 1em 1em 0 1em;
+            }
+
+            .containerFranquia .cardsFranquias .card .footerCard .contatoFranquia {
+                font-weight: bold;
+                font-size: 18px;
+                margin: 0 1em 1em 1em;
+            }

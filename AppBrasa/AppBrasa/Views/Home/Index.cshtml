@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Brasa Hamburgueria - Franquias</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+    <link href="@Url.Content("~/css/franquia.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/global.css")" rel="stylesheet" />
+</head>
+<body class="corFundo">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="@Url.Content("~/imagens/logoBrasaPreto.svg")" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <div style="display: none;">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">HOME</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">QUEM SOMOS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">SEJA FRANQUEADO</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">UNIDADES</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">CONTATOS</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="containerFranquia">
+        <div class="container-md">
+            <div class="row">
+                <div class="col-md-12 text-center" style="margin: 2em 0em 2em 0em;">
+                    <span class="tituloPagina">Unidades</span>
+                </div>
+            </div>
+            <div class="row" id="cardFranquia">
+                @foreach (var franquia in ViewBag.Franquias)
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <a class="cardsFranquias" asp-action="Cardapio" asp-controller="Home" asp-route-id="@franquia.Id">
+                            <div class="card">
+                                <img src="@Url.Content("~/imagens/logoBrasaPreto.svg")" />
+                                <span class="cidadeFranquia"> @franquia.Cidade -  @franquia.UF</span>
+                                <div class="footerCard">
+                                    <span class="enderecoFranquia"><i class="fas fa-map-marker-alt"></i> @franquia.Endereco </span>
+                                    <span class="contatoFranquia"> @franquia.Telefone </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <script src="https://kit.fontawesome.com/61c3c13db3.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>    
+</body>
+</html>

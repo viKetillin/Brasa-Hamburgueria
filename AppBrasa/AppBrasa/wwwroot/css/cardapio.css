@@ -1,0 +1,225 @@
+﻿.capaCardapio {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    padding: 3em;
+}
+
+    .capaCardapio .botaoHorario {
+        background-color: #fff;
+        border: none;
+        border-radius: 20px;
+        padding: 6px 10px;
+    }
+
+        .capaCardapio .botaoHorario #statusHorario {
+            margin-left: 6px;
+            font-weight: 500;
+        }
+
+            .capaCardapio .botaoHorario #statusHorario .aberto {
+                color: var(--verdeAberto);
+            }
+
+            .capaCardapio .botaoHorario #statusHorario .fechado {
+                color: var(--vermelhoFechado);
+            }
+
+    .capaCardapio #logo img {
+        width: 35em;
+        margin: 3em 0;
+    }
+
+    .capaCardapio .endereco {
+        color: #fff;
+        font-size: 1em;
+        font-weight: bold;
+        margin-bottom: 2em;
+    }
+
+        .capaCardapio .endereco i {
+            margin-right: 1em;
+        }
+
+.containerCardapio {
+    background-color: #dedede;
+    min-height: 100vh;
+}
+
+#statusHorario {
+    margin-left: 8px;
+}
+
+span.horarioFechado {
+    color: var(--vermelhoFechado);
+    font-weight: bold;
+    float: right;
+}
+
+span.horarioFuncionamento {
+    float: right;
+    margin-left: 3em;
+    color: var(--verdeAberto);
+    font-weight: bold;
+}
+
+.capaCardapio .botaoLinguagem {
+    background-color: #fff;
+    border: none;
+    border-radius: .25rem;
+    padding: 3px 14px;
+}
+
+.capaCardapio .dropdownLinguagem img {
+    width: 2em;
+}
+
+.dropdownsConfig {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 6em;
+}
+
+.dropdown-menu.menuLinguagem {
+    min-width: 0px;
+    padding: 3px 14px;
+}
+
+.dropdownHorario {
+    width: 18em;
+}
+
+#categorias {
+    display: flex;
+}
+
+    #categorias .categoria {
+        text-align: center;
+        margin-right: 2em;
+        font-weight: bold;
+    }
+
+        #categorias .categoria img {
+            width: 4.5em;
+            border-radius: 50%;
+            border: 2px solid #ececec;
+        }
+
+        #categorias .categoria.tudo img {
+            border: 2px solid var(--corPrincipal);
+        }
+
+        #categorias .categoria span {
+            display: block;
+            color: #666;
+        }
+
+#btnPesquisa, #inputPesquisa {
+    height: 45px;
+}
+
+.divPesquisa {
+    margin: auto 0;
+    flex-grow: 1;
+}
+
+.divPesquisaCategoria {
+    display: flex;
+    transform: translate(0%, -55%);
+}
+
+.divPesquisa i {
+    color: #666;
+}
+
+.categoriaProduto {
+    font-weight: bold;
+    font-size: x-large;
+    color: #444;
+}
+
+#modalDetalheProduto .modal-header {
+    background: var(--corPrincipal);
+    color: white;
+}
+
+    #modalDetalheProduto .modal-header .btn-close {
+        filter: brightness(0) invert(1);
+    }
+
+.form-check-input:checked {
+    background-color: var(--corPrincipal);
+    border-color: var(--corPrincipal);
+}
+
+.accordion-button:not(.collapsed) {
+    color: #333;
+    background-color: #d8d8d8;
+    font-weight: bold;
+}
+
+.accordion-button::after {
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%253c63e4'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgb(0 0 0 / 25%);
+}
+
+.btnAdicionarPedido {
+    color: #fff;
+    margin-top: 1em;
+    font-size: 14pt;
+    background: var(--corPrincipal);
+    border: 1px solid var(--corPrincipal);
+    border-radius: 8px;
+    padding: 0.5em;
+}
+
+.form-check-input:focus {
+    border-color: rgb(197, 70, 40);
+    box-shadow: 0 0 0 0.25rem rgb(197 70 40 / 25%);
+}
+
+.divDescricaoLancheModal {
+    display: flex;
+}
+
+    .divDescricaoLancheModal #descricaoLanche {
+        margin: auto;
+        margin-left: 1em;
+        color: #666;
+        font-size: 0.9em;
+    }
+
+.btnFinalizarPedido {
+    background: var(--corPrincipal);
+    color: #fff;
+    border: 0px solid;
+    border-radius: 5px;
+    padding: 8px 13px;
+}
+
+.spanInfoFinalizacaoPedido {
+    font-size: 10pt;
+    width: 33%;
+    float: left;
+    margin: 3.5px 1em 0px 12em;
+    text-align: right;
+    white-space: break-spaces;
+}
+
+.container-fluid.containerNavBar {
+    place-content: center;
+}
+
+.precoAdicional {
+    color: var(--corPrincipal);
+    float: right;
+}
+
+#collapseAdicionais .form-check-label {
+    display: block;
+}
